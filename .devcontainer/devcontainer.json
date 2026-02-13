@@ -1,0 +1,36 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python Docker Dev",
+	// 方案2-1：换成Debian 12（bookworm）的Python镜像（兼容moby）
+	"image": "mcr.microsoft.com/devcontainers/python:2-3.14-bookworm",
+	// 方案2-2：或换成Ubuntu 24.04的Python镜像（更通用）
+	// "image": "mcr.microsoft.com/devcontainers/python:2-3.14-ubuntu-24.04",
+	
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+		"version": "latest",
+		"moby": true // 此时可保留默认的moby: true
+		}
+	},
+	"remoteUser": "appuser",
+	// 可选：容器创建后自动确保家目录存在（兜底）
+	"postCreateCommand": "mkdir -p /home/appuser && chown appuser:appuser /home/appuser",
+	// 临时测试：若仍有问题，可临时用root（不推荐长期使用）
+	// "remoteUser": "root"
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}

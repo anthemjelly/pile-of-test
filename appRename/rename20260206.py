@@ -3,33 +3,105 @@ import os
 import re
 
 
-# ===================== 独立函数1：基础校验（复用场景：所有文件操作前的校验） =====================
+# ===================== 独立函数：基础校验（复用场景：所有文件操作前的校验） =====================
 # 🚨 功能：检查文件夹是否存在、筛选txt文件，返回「有效文件列表」或提示错误
-def validate_folder_and_files(folder):
+def validate_folder_and_files(folder, filetype):
     """
     驗證文件夾有效性，並篩選出待處理的txt文件
     :param folder: 文件夾路徑
     :return: 有效txt文件列表（失敗返回None）
     """
-    # 🚨 檢查文件夾是否存在
-    if not os.path.isdir(folder):
-        print(f"錯誤：文件夾 {folder} 不存在！")
-        return None
-    # 🚨 篩選txt文件，排除隱藏文件（如 .DS_Store）
-    files = [f for f in os.listdir(folder) if f.endswith(".txt") and not f.startswith(".")]
-    if not files:
-        print("錯誤：文件夾里沒有txt文件！")
-        return None
-    return files
 
-# ===================== 独立函数2：分类文件（复用场景：按规则拆分「保留/待重命名」文件） =====================
+    # 🚨 詢問要更改哪類文件，並排除空白輸入
+    filetype = input("輸入文件類型：").strip().lower()
+
+    if not filetype:
+        print("錯誤：文件類型不能為空！")
+        return None
+
+    # 🚨 轉換為絕對路徑，並判斷路徑是否存在
+    folder_abs = os.path.abspath(folder)
+
+    if not os.path.exists(folder_abs):
+        print(f"錯誤：路徑 {folder_abs} 不存在！")
+        return None
+
+    return folder_abs
+
+    '''
+    # 🚨 篩選文件，排除隱藏文件（如 .DS_Store）
+    files = [f for f in os.listdir(folder) if f.endswith(f".{filetype}") and not f.startswith(".")]
+
+    for i in range(len(files)):
+        abs_path = f"{folder}/{files[i]}"
+
+    # 🚨 篩選資料夾，排除隱藏文件（如 .DS_Store）
+    subfolders = [f for f in os.listdir(folder) if os.path.isdir(os.path.join(folder, f)) and not f.startswith(".")]
+
+    for i in range(len(subfolders)):
+
+        abs_path = abs_path + f"{folder}/{subfolders[i]/files[i]}"
+
+        # 🚨 列印檢測結果，讓用戶確認
+    print(f"文件夾 {folder} 中包含以下子資料夾：{subfolders}")
+
+    if not files:
+        print(f"錯誤：文件夾里沒有.{filetype}文件！")
+        return None
+    return abs_path
+    '''
+
+# ===================== 独立函数：檔案檢查 =====================
+# 🚨 功能：筛选{filetype}文件
+def check_files(folder_abs):
+    """
+    驗證文件夾有效性，並篩選出待處理的txt文件
+    :param folder: 文件夾路徑
+    :return: 有效txt文件列表（失敗返回None）
+    """
+
+
+    # 篩選「非隱藏」的目標類型文件，並構建絕對路徑列表（核心：用list存儲多個路徑）
+    file_paths = []
+
+    for filename in os.listdir(folder_abs):
+        if filename.endswith(f".{filetype}") and not filename.startswith("."):
+            file_abs = os.path.join(folder_abs, filename)
+            file_paths.append(file_abs)
+
+    if not file_paths:
+        print(f"錯誤：文件夾里沒有.{filetype}文件！")
+        return None
+
+
+# ===================== 独立函数：資料夾檢查 =====================
+# 🚨 功能：筛选資料夾
+def check_folders(folder_abs, filetype):
+    """
+    驗證文件夾有效性，並篩選出待處理的txt文件
+    :param folder: 文件夾路徑
+    :return: 有效txt文件列表（失敗返回None）
+    """
+
+
+    # 篩選子文件夾（單獨存為列表）
+    subfolder_paths = []
+
+    for foldername in os.listdir(folder_abs):
+        folder_item = os.path.join(folder_abs, foldername)
+        if os.path.isdir(folder_item) and not foldername.startswith("."):
+            subfolder_paths.append(folder_item)
+
+
+# ===================== 独立函数：分类文件（复用场景：按规则拆分「保留/待重命名」文件） =====================
 # 🚨 核心修改：精准区分「保留文件」和「待重命名文件」，避免误改原有带数字文件
-def classify_files(files, prefix, pattern=r"\d+"):
+def classify_files(files, prefix, filetype, pattern=r"\d+"):
     """
     分類文件：保留「前綴+數字.txt」的文件，其餘為待重命名文件
     :param files: 所有txt文件列表
     :param prefix: 新文件名前綴（如Document）
     :param pattern: 匹配數字的正則表達式
+    :param filetype: 文件類型（如txt）
     :return: (reserved_files, to_rename_files) 保留文件列表、待重命名文件列表
     """
     reserved_files = []  # 无需重命名的文件（如Document_1.txt）
@@ -38,14 +110,14 @@ def classify_files(files, prefix, pattern=r"\d+"):
     # 🚨 遍歷所有文件，按「前綴+_+數字.txt」規則分類
     for file in files:
         # 🚨 正則匹配：嚴格匹配「前綴_數字.txt」格式（如Document_1.txt）
-        match = re.search(rf"{prefix}_({pattern})\.txt", file)
+        match = re.search(rf"{prefix}_({pattern})\.{filetype}", file)
         if match:
             reserved_files.append(file)  # 符合規則 → 保留
         else:
             to_rename_files.append(file) # 不符合 → 待重命名
     return reserved_files, to_rename_files
 
-# ===================== 独立函数3：收集已用序号（复用场景：避免序号重复） =====================
+# ===================== 独立函数：收集已用序号（复用场景：避免序号重复） =====================
 # 🚨 功能：从「保留文件」中提取已用序号，生成「序号池」，避免新文件名重复
 def collect_used_numbers(reserved_files, prefix, pattern=r"\d+"):
     """
@@ -62,16 +134,16 @@ def collect_used_numbers(reserved_files, prefix, pattern=r"\d+"):
         used_nums.add(int(num))
     return used_nums
 
-# ===================== 独立函数4：生成重命名映射（复用场景：批量生成新旧文件名对应关系） =====================
+# ===================== 独立函数：生成重命名映射（复用场景：批量生成新旧文件名对应关系） =====================
 # 🚨 核心修改：为待重命名文件分配「最小未使用序号」，避免重复
-def generate_rename_mapping(folder, to_rename_files, prefix, used_nums):
+def generate_rename_mapping(folder, to_rename_files, prefix, used_nums, filetype):
     """
     生成「舊路徑→新路徑」的映射表，分配不重複的序號
     :param folder: 文件夾路徑
     :param to_rename_files: 待重命名文件列表
     :param prefix: 新文件名前綴
     :param used_nums: 已使用的序號集合
-    :return: 重命名映射字典 {old_path: new_path}
+    :param filetype: 文件類型（如txt）
     """
     rename_mapping = {}
     current_num = 0  # 從0開始分配序號
@@ -82,7 +154,7 @@ def generate_rename_mapping(folder, to_rename_files, prefix, used_nums):
         while current_num in used_nums:
             current_num += 1
         # 🚨 生成新文件名（如Document_2.txt）
-        new_name = f"{prefix}_{current_num}.txt"
+        new_name = f"{prefix}_{current_num}.{filetype}"
         new_path = os.path.join(folder, new_name)
         rename_mapping[old_path] = new_path
         # 🚨 標記該序號已使用，避免重複
@@ -90,7 +162,7 @@ def generate_rename_mapping(folder, to_rename_files, prefix, used_nums):
         current_num += 1
     return rename_mapping
 
-# ===================== 独立函数5：执行重命名（复用场景：所有批量重命名操作） =====================
+# ===================== 独立函数：执行重命名（复用场景：所有批量重命名操作） =====================
 # 🚨 功能：执行重命名，带异常处理和详细日志，可单独复用
 def execute_rename(rename_mapping):
     """
@@ -111,8 +183,19 @@ def execute_rename(rename_mapping):
             print(f"失敗：{old_file} → {new_file} 錯誤：{e}")
             fail += 1
     return success, fail
+# ===================== 独立函数：鑑別特定檔案 =====================
+# 🚨 功能：只選名字包含某字段的檔案
+def filter_files_by_keyword(files, keyword):
+    """
+    根據關鍵字篩選文件
+    :param files: 文件列表
+    :param keyword: 關鍵字
+    :return: 包含關鍵字的文件列表
+    """
+    filtered_files = [p for p in files if keyword in os.path.basename(p)]
+    return filtered_files
 
-# ===================== 独立函数6：主逻辑（复用场景：整合所有步骤，可直接调用） =====================
+# ===================== 主逻辑（复用场景：整合所有步骤，可直接调用） =====================
 def batch_rename(folder, prefix="file", pattern=r"\d+"):
     """
     批量重命名主函數（整合所有獨立函數）
@@ -120,13 +203,18 @@ def batch_rename(folder, prefix="file", pattern=r"\d+"):
     :param prefix: 新文件名前綴
     :param pattern: 匹配數字的正則表達式
     """
+
+    # 🚨 聲明filetype
+    filetype = ""
+
     # 步驟1：基礎校驗
-    files = validate_folder_and_files(folder)
-    if not files:
-        return
+    folder_abs = validate_folder_and_files(folder, filetype)
+
+    files = check_files(folder_abs, filetype)
+    sub_folders = check_folders(folder_abs)
 
     # 步驟2：分類文件（保留/待重命名）
-    reserved_files, to_rename_files = classify_files(files, prefix, pattern)
+    reserved_files, to_rename_files = classify_files(files, prefix, filetype, pattern)
     # 🚨 列印分類結果，讓用戶確認
     print("檢測到：")
     print(f"- 無需重命名的文件（保留原有名稱）：{reserved_files}")
@@ -141,7 +229,7 @@ def batch_rename(folder, prefix="file", pattern=r"\d+"):
     used_nums = collect_used_numbers(reserved_files, prefix, pattern)
 
     # 步驟4：生成重命名映射
-    rename_mapping = generate_rename_mapping(folder, to_rename_files, prefix, used_nums)
+    rename_mapping = generate_rename_mapping(folder, to_rename_files, prefix, used_nums, filetype)
 
     # 步驟5：執行重命名
     success, fail = execute_rename(rename_mapping)

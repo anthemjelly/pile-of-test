@@ -41,11 +41,14 @@ services:
           target: /app
           action: sync
         # 2. requirements.txt变化时，自动重新安装依赖
-        - path: ./requirements.txt
-          action: rebuild
+        #- path: ./requirements.txt
+        #  target: /app/requirements.txt
+        #  action: rebuild
         # 3. Dockerfile变化时，自动重新构建镜像
         - path: ./Dockerfile
+          target: /app/Dockerfile
           action: rebuild
+
   db:
     image: postgres:18
     restart: always

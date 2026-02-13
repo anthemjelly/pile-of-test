@@ -4,6 +4,26 @@
 # For more help, visit the .dockerignore file reference guide at
 # https://docs.docker.com/go/build-context-dockerignore/
 
+/.ruff_cache
+.cache
+# 排除构建生成的目录
+__pycache__/
+.ruff_cache/
+venv/
+.env
+.git/
+.gitignore
+*.pyc
+*.pyo
+*.pyd
+.idea/
+.vscode/
+# 排除日志/临时文件
+*.log
+tmp/
+# 排除依赖缓存
+.pip-cache/
+
 **/.DS_Store
 **/__pycache__
 **/.venv
