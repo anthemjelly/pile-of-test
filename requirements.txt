@@ -61,9 +61,9 @@ platformdirs==4.3.8
 poetry==2.3.2
 poetry-core==2.3.1
 pre_commit==4.2.0
-Protego==0.6.0
-psycopg==3.2.9
-psycopg-binary==3.2.9
+Protego==0.3.1
+psycopg==3.3.2
+psycopg-binary==3.3.2
 pyasn1==0.6.2
 pyasn1_modules==0.4.2
 pycparser==3.0

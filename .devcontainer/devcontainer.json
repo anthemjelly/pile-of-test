@@ -1,21 +1,28 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-	"name": "Python Docker Dev",
-	// 方案2-1：换成Debian 12（bookworm）的Python镜像（兼容moby）
-	"image": "mcr.microsoft.com/devcontainers/python:2-3.14-bookworm",
-	// 方案2-2：或换成Ubuntu 24.04的Python镜像（更通用）
-	// "image": "mcr.microsoft.com/devcontainers/python:2-3.14-ubuntu-24.04",
-	
-	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {
-		"version": "latest",
-		"moby": true // 此时可保留默认的moby: true
-		}
-	},
-	"remoteUser": "appuser",
-	// 可选：容器创建后自动确保家目录存在（兜底）
-	"postCreateCommand": "mkdir -p /home/appuser && chown appuser:appuser /home/appuser",
+  "name": "Python Docker Dev",
+  // 关键：指定用Dockerfile构建镜像，而非直接用image（彻底替换基础镜像）
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."  // 构建上下文为项目根目录
+  },
+  // 关键：指定远程用户为appuser（和Dockerfile里创建的用户一致）
+  "remoteUser": "appuser",
+  // 可选：禁用不必要的DinD特性（避免之前的兼容性问题）
+  "features": {},
+  // 可选：容器启动后自动进入家目录
+  "postCreateCommand": "cd /home/appuser",
+  // 可选：挂载项目目录到容器的家目录（方便编辑代码）
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/home/appuser/workspace,type=bind,cached"
+  ]
+
+
+
+
+
+
 	// 临时测试：若仍有问题，可临时用root（不推荐长期使用）
 	// "remoteUser": "root"
 
