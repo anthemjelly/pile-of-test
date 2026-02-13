@@ -17,6 +17,9 @@ ignore = [
     "B008",  # do not perform function calls in argument defaults
     "W191",  # indentation contains tabs
     "B904",  # Allow raising exceptions without from e, for HTTPException
+    "W291",  # 行尾空格
+    "ARG001",# 未使用参数
+    "F841",  # 未使用变量
 ]
 [tool.pyright]
 typeCheckingMode = "strict"

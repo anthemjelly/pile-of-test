@@ -89,7 +89,7 @@ def classify_files(files, prefix, filetype, pattern=r"\d+"):
             to_rename_files.append(file)
     return reserved_files, to_rename_files
 
-    '''    
+    '''
     保留文件列表 = []
     待重命名列表 = []
     匹配規則 = "前綴_數字.文件類型"  # 比如 "Document_0.txt"

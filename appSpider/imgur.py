@@ -47,7 +47,7 @@ if __name__ == "__main__":
     htmltar = connect_mongodb()
 
     if htmltar:
-        
+
         elements = html_to_contect(imageurl)
 
 
