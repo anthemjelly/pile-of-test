@@ -1,0 +1,16 @@
+﻿version: '3.8'
+services:
+  python-dev:  # 自定义服务名，后续 devcontainer 要对应
+    build:
+      context: .  # 构建上下文为项目根目录（对应你原配置的 "context": ".."）
+      dockerfile: Dockerfile  # 指向你的 Dockerfile 路径
+    volumes:
+      # 核心：添加 uid=1000,gid=1000 強制匹配 appuser 的 UID/GID
+      - ./:/app:cached,uid=1000,gid=10001
+    user: "10001:10001"
+    stdin_open: true
+    tty: true
+    working_dir: /app
+    environment:
+      - USER=appuser
+      - HOME=/home/appuser

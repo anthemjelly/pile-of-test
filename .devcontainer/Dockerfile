@@ -29,6 +29,10 @@ RUN adduser \
     --uid "${UID}" \
     appuser
 
+ENV VSCODE_USER=appuser
+# 安裝依賴
+RUN apt update && apt install -y sudo && rm -rf /var/lib/apt/lists/*
+
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
 # Leverage a bind mount to requirements.txt to avoid having to copy them into
@@ -37,11 +41,14 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
+# 設置默認文件權限
+RUN umask 002
 # Copy the source code into the container.
 COPY . .
 
 # Change ownership of the app directory to the non-privileged user
-RUN chown -R appuser:appuser /app
+RUN chown -R appuser:appuser /app \
+    && chmod -R 775 /app
 
 # Switch to the non-privileged user to run the application.
 USER appuser

@@ -1,23 +1,36 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
   "name": "Python Docker Dev",
   // 关键：指定用Dockerfile构建镜像，而非直接用image（彻底替换基础镜像）
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": ".."  // 构建上下文为项目根目录
-  },
+  "dockerComposeFile": ["compose.yml"],
+  "service": "python-dev",  // 对应 compose.yml 里的服务名
+  "workspaceFolder": "/app",
   // 关键：指定远程用户为appuser（和Dockerfile里创建的用户一致）
   "remoteUser": "appuser",
-  // 可选：禁用不必要的DinD特性（避免之前的兼容性问题）
-  "features": {},
-  // 可选：容器启动后自动进入家目录
-  "postCreateCommand": "cd /home/appuser",
+  "containerUser": "appuser",
+  "postCreateCommand": "sudo chown -R appuser:appuser /app && sudo chmod -R 755 /app",
   // 可选：挂载项目目录到容器的家目录（方便编辑代码）
   "mounts": [
-    "source=${localWorkspaceFolder},target=/home/appuser/workspace,type=bind,cached"
-  ]
-
+    "source=${localWorkspaceFolder},target=/app/workspace,type=bind,cached"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-azuretools.vscode-docker",
+        "mongodb.mongodb-vscode",
+        "ms-azuretools.vscode-containers",
+        "streetsidesoftware.code-spell-checker"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.analysis.extraPaths": ["/app"]
+      }
+    }
+  }
 
 
 

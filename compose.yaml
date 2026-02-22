@@ -27,7 +27,10 @@ services:
       watch:
         - action: rebuild
           path: .
-
+    volumes:
+      - ./:/app:cached
+    user: "10001:10001"
+    working_dir: /app
   db:
     image: postgres:18
     restart: always

@@ -15,4 +15,3 @@ if resp.status_code == 200:
     html = resp.text
     data = resp.json
     print(data)
-
