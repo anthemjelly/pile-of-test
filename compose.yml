@@ -1,0 +1,109 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker Compose reference guide at
+# https://docs.docker.com/go/compose-spec-reference/
+
+# Here the instructions define your application as a service called "server".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+version: '3.8'
+name: python-spider-project
+
+# 全局數據卷：PostgreSQL 數據持久化，不會隨容器刪除丟失
+volumes:
+  db-data:
+    driver: local
+
+# 全局網路：服務間隔離互通
+networks:
+  app-network:
+    driver: bridge
+
+# 敏感配置：數據庫密碼文件（需手動在項目根目錄創建 db/password.txt，寫入自定義密碼）
+secrets:
+  db-password:
+    file: db/password.txt
+
+services:
+  # Python 後端/爬蟲核心服務
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: 10001
+        GID: 10001
+    # 端口映射：本機端口:容器端口
+    ports:
+      - "8001:8001"
+    # 環境變量：服務配置
+    environment:
+      - POSTGRES_SERVER=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=example
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    # 啟動依賴：等待數據庫完全就緒再啟動
+    depends_on:
+      db:
+        condition: service_healthy
+    # 敏感配置掛載
+    secrets:
+      - db-password
+    # 開發熱重載：代碼修改自動重構服務
+    develop:
+      watch:
+        - action: rebuild
+          path: .
+          target: /app
+          ignore:
+            - __pycache__/
+            - .venv/
+    # 代碼掛載：本機代碼實時同步到容器，強制匹配 UID/GID 解決權限問題
+    volumes:
+      - ./:/app:cached,uid=10001,gid=10001
+    # 容器運行用戶，與 Dockerfile 完全匹配
+    user: "10001:10001"
+    # 工作目錄
+    working_dir: /app
+    # 加入專用網路
+    networks:
+      - app-network
+    # 重啟策略：異常退出自動重啟
+    restart: unless-stopped
+
+  # PostgreSQL 數據庫服務
+  db:
+    # 官方穩定版鏡像（18 為最新 LTS 版本）
+    image: postgres:18-bookworm
+    # 重啟策略
+    restart: always
+    # 運行用戶
+    user: postgres
+    # 敏感配置掛載
+    secrets:
+      - db-password
+    # 數據持久化：修復歷史錯誤，官方鏡像數據目錄為 /var/lib/postgresql/data
+    volumes:
+      - db-data:/var/lib/postgresql
+    # 數據庫環境變量
+    environment:
+      - POSTGRES_DB=example
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    # 端口映射：本機可直接用數據庫工具連接（可選，不開放則僅容器內可訪問）
+    ports:
+      - "5432:5432"
+    # 內部端口暴露
+    expose:
+      - 5432
+    # 加入專用網路
+    networks:
+      - app-network
+    # 健康檢查：修復歷史配置，確保數據庫完全就緒再讓後端服務啟動
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "example"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s

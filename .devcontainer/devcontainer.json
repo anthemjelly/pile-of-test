@@ -1,56 +1,43 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
+// 临时测试：若仍有问题，可临时用root（不推荐长期使用）
+// "remoteUser": "root"
+
+// Features to add to the dev container. More info: https://containers.dev/features.
+// "features": {},
+
+// Use 'forwardPorts' to make a list of ports inside the container available locally.
+// "forwardPorts": [],
+
+// Use 'postCreateCommand' to run commands after the container is created.
+// "postCreateCommand": "pip3 install --user -r requirements.txt",
+
+// Configure tool-specific properties.
+// "customizations": {},
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
-  "name": "Python Docker Dev",
-  // 关键：指定用Dockerfile构建镜像，而非直接用image（彻底替换基础镜像）
+  "name": "Python Dev Container",
   "dockerComposeFile": ["compose.yml"],
-  "service": "python-dev",  // 对应 compose.yml 里的服务名
+  "service": "python-dev",
   "workspaceFolder": "/app",
-  // 关键：指定远程用户为appuser（和Dockerfile里创建的用户一致）
   "remoteUser": "appuser",
   "containerUser": "appuser",
-  "postCreateCommand": "sudo chown -R appuser:appuser /app && sudo chmod -R 755 /app",
-  // 可选：挂载项目目录到容器的家目录（方便编辑代码）
-  "mounts": [
-    "source=${localWorkspaceFolder},target=/app/workspace,type=bind,cached"
-  ],
+  "postCreateCommand": "sudo chown -R appuser:appuser /app && sudo chmod -R 775 /app && git config --global --add safe.directory /app",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-azuretools.vscode-docker",
-        "mongodb.mongodb-vscode",
         "ms-azuretools.vscode-containers",
+        "mongodb.mongodb-vscode",
         "streetsidesoftware.code-spell-checker"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
-        "python.analysis.extraPaths": ["/app"]
+        "python.analysis.extraPaths": ["/app"],
+        "terminal.integrated.defaultProfile.linux": "bash"
       }
     }
   }
-
-
-
-
-
-	// 临时测试：若仍有问题，可临时用root（不推荐长期使用）
-	// "remoteUser": "root"
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pip3 install --user -r requirements.txt",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
 }

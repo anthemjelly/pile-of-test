@@ -1,0 +1,242 @@
+
+# syntax=docker/dockerfile:1
+2
+
+# å®æ¹ Dev Container Python åºç¤é¡åï¼åçå¼å®¹ VS Code éç¼ç°å¢
+3
+
+FROM mcr.microsoft.com/devcontainers/python:2-3.12-bookworm
+4
+
+
+5
+
+# Python ç°å¢åªåéç½®
+6
+
+ENV PYTHONDONTWRITEBYTECODE=1
+7
+
+ENV PYTHONUNBUFFERED=1
+8
+
+
+9
+
+# çµ±ä¸ UID/GIDï¼è compose.yml ä¸­çç¨æ¶éç½®å®å¨å¹é
+10
+
+ARG UID=10001
+11
+
+ARG GID=10001
+12
+
+
+13
+
+# åµå»ºéç¹æ¬ç¨æ¶ appuserï¼ä¿®å¾©æ­·å²éç½®åé¡ï¼
+14
+
+# 1. åµå»ºçå¯¦å®¶ç®éï¼è§£æ±º VS Code éç½®å¯«å¥åé¡
+15
+
+# 2. ä½¿ç¨ /bin/bash äº¤äºå¼çµç«¯ï¼è§£æ±º Dev Container çµç«¯ç¡æ³ä½¿ç¨çåé¡
+16
+
+# 3. éç½®åå¯ sudo æ¬éï¼æ»¿è¶³éç¼å ´æ¯éæ±
+17
+
+RUN groupadd --gid "${GID}" appuser \
+18
+
+    && adduser \
+19
+
+        --disabled-password \
+20
+
+        --gecos "" \
+21
+
+        --home "/home/appuser" \
+22
+
+        --shell "/bin/bash" \
+23
+
+        --uid "${UID}" \
+24
+
+        --gid "${GID}" \
+25
+
+        appuser \
+26
+
+    && echo "appuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+27
+
+
+28
+
+# åè¨´ VS Code Dev Container ä½¿ç¨ appuser ä½çºé»èªç¨æ¶
+29
+
+ENV VSCODE_USER=appuser
+30
+
+ENV USER=appuser
+31
+
+ENV HOME=/home/appuser
+32
+
+
+33
+
+# å·¥ä½ç®éè¨­å®
+34
+
+WORKDIR /app
+35
+
+
+36
+
+# å®è£ç³»çµ±ä¾è³´
+37
+
+RUN apt update && apt install -y --no-install-recommends \
+38
+
+    sudo \
+39
+
+    curl \
+40
+
+    gnupg \
+41
+
+    lsb-release \
+42
+
+    ca-certificates \
+43
+
+    && rm -rf /var/lib/apt/lists/* \
+44
+
+    # 1. åµå»º keyrings ç®éï¼é¿åå ±é¯ï¼
+45
+
+    && mkdir -p /etc/apt/keyrings \
+46
+
+    # 2. ä¸è¼ä¸¦æ·»å  PostgreSQL å®æ¹ GPG å¬é°
+47
+
+    && curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /etc/apt/keyrings/postgresql.gpg \
+48
+
+    # 3. æ·»å  PostgreSQL å®æ¹ apt æºï¼æåæå® bookwormï¼é¿å lsb-release åé¡ï¼
+49
+
+    && echo "deb [signed-by=/etc/apt/keyrings/postgresql.gpg] http://apt.postgresql.org/pub/repos/apt bookworm-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+50
+
+    # 4. æ´æ° apt æºä¸¦å®è£ postgresql-client
+51
+
+    && apt update && apt install -y --no-install-recommends \
+52
+
+    postgresql-client-16 \
+53
+
+    && rm -rf /var/lib/apt/lists/*
+
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+Get:1 https://dl.yarnpkg.com/debian stable InRelease
+Get:2 http://deb.debian.org/debian bookworm InRelease [151 kB]
+Err:1 https://dl.yarnpkg.com/debian stable InRelease
+The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 62D54FD4003F6525
+Get:3 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:4 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+Get:5 http://deb.debian.org/debian bookworm/main amd64 Packages [8792 kB]
+Get:6 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+Get:7 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [297 kB]
+Reading package lists...
+W: GPG error: https://dl.yarnpkg.com/debian stable InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 62D54FD4003F6525
+E: The repository 'https://dl.yarnpkg.com/debian stable InRelease' is not signed. 
+54
+
+
+55
+
+# åªåï¼åå±¤å®è£ Python ä¾è³´ï¼å©ç¨ Docker ç·©å­å éæ§å»º
+56
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+57
+
+    --mount=type=bind,source=requirements.txt,target=requirements.txt \
+58
+
+    python -m pip install --upgrade pip \
+59
+
+    && python -m pip install -r requirements.txt
+60
+
+
+61
+
+# è¨­ç½®é»èªæä»¶åµå»ºæ¬éï¼ç¢ºä¿æ°å»ºæä»¶ææ­£ç¢ºçè®å¯«æ¬é
+62
+
+RUN umask 002
+63
+
+
+64
+
+# è¤è£½é ç®æºç¢¼ï¼ä¸¦è³¦äº appuser å®æ´æ¬é
+65
+
+COPY --chown=appuser:appuser . .
+66
+
+RUN chown -R appuser:appuser /app \
+67
+
+    && chmod -R 775 /app
+68
+
+
+69
+
+# åæå°éç¹æ¬ç¨æ¶éè¡
+70
+
+USER appuser
+71
+
+
+72
+
+# æ´é²æåç«¯å£
+73
+
+EXPOSE 8001
+74
+
+
+75
+
+# é»èªååå½ä»¤ï¼Dev Container æèªåè¦èæ­¤å½ä»¤ï¼ä¸å½±é¿éç¼ï¼
+76
+
+CMD ["uvicorn", "app:app", "--host=0.0.0.0", "--port=8001", "--reload"]

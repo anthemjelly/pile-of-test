@@ -1,16 +1,88 @@
 ﻿version: '3.8'
+name: python-devcontainer-project
+
+# 全局數據卷：與根目錄 compose 共用數據卷，數據互通
+volumes:
+  db-data:
+    external: false
+    driver: local
+
+# 全局網路
+networks:
+  dev-network:
+    driver: bridge
+
+# 敏感配置
+secrets:
+  db-password:
+    file: ../db/password.txt
+
 services:
-  python-dev:  # 自定义服务名，后续 devcontainer 要对应
+  # Dev Container 核心開發容器
+  python-dev:
     build:
-      context: .  # 构建上下文为项目根目录（对应你原配置的 "context": ".."）
-      dockerfile: Dockerfile  # 指向你的 Dockerfile 路径
+      context: ..  # 構建上下文為項目根目錄
+      dockerfile: ./Dockerfile  # 指向根目錄的 Dockerfile
+      args:
+        UID: 10001
+        GID: 10001
+    # 開發環境不暴露端口，由 Dev Container 自動轉發
+    ports:
+      - "8001:8001"
+    # 環境變量：開發環境專屬配置
+    environment:
+      - POSTGRES_SERVER=dev-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=dev_db
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+      - PYTHONPATH=/app
+      - HOME=/home/appuser
+    # 啟動依賴
+    depends_on:
+      dev-db:
+        condition: service_healthy
+    # 敏感配置
+    secrets:
+      - db-password
+    # 代碼掛載：實時同步本機代碼，強制匹配 UID/GID 解決文件保存權限問題
     volumes:
-      # 核心：添加 uid=1000,gid=1000 強制匹配 appuser 的 UID/GID
-      - ./:/app:cached,uid=1000,gid=10001
+      - ../:/app:cached,uid=10001,gid=10001
+    # 容器運行用戶，與 Dockerfile 完全匹配
     user: "10001:10001"
+    # Dev Container 必需：保持終端打開，不會啟動後退出
     stdin_open: true
     tty: true
+    # 工作目錄
     working_dir: /app
+    # 加入專用網路
+    networks:
+      - dev-network
+    # 開發環境不重啟
+    restart: no
+
+  # 開發環境專用 PostgreSQL 數據庫
+  dev-db:
+    image: postgres:18-bookworm
+    restart: always
+    user: postgres
+    secrets:
+      - db-password
+    volumes:
+      - db-data:/var/lib/postgresql
     environment:
-      - USER=appuser
-      - HOME=/home/appuser
+      - POSTGRES_DB=dev_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    networks:
+      - dev-network
+    # 健康檢查
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "dev_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s

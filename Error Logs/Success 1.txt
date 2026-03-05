@@ -1,0 +1,733 @@
+ ✔ Container python-devcontainer-project-dev-db-1     Healthy              6.6s 
+ ✔ Container python-devcontainer-project-python-dev-1 Created              0.2s 
+[+] up 4/4
+ ✔ Network python-devcontainer-project_dev-network    Created              0.3s 
+ ✔ Volume python-devcontainer-project_db-data         Created              0.0s 
+ ✔ Container python-devcontainer-project-dev-db-1     Healthy              6.6s 
+ ✔ Container python-devcontainer-project-python-dev-1 Created              0.2s 
+[+] up 4/4
+ ✔ Network python-devcontainer-project_dev-network    Created              0.3s 
+ ✔ Volume python-devcontainer-project_db-data         Created              0.0s 
+ ✔ Container python-devcontainer-project-dev-db-1     Healthy              6.6s 
+ ✔ Container python-devcontainer-project-python-dev-1 Created              0.2s 
+[15899 ms] Start: Run: docker ps -q -a --filter label=com.docker.compose.project=python-devcontainer-project --filter label=com.docker.compose.service=python-dev
+[15980 ms] c:\Users\eduqw\AppData\Local\Programs\Microsoft VS Code\072586267e\resources\app\node_modules\node-pty\lib\conpty_console_list_agent.js:13
+[15980 ms] var consoleProcessList = getConsoleProcessList(shellPid);
+[15980 ms]                          ^
+[15980 ms] Error: AttachConsole failed
+[15980 ms]     at Object.<anonymous> (c:\Users\eduqw\AppData\Local\Programs\Microsoft VS Code\072586267e\resources\app\node_modules\node-pty\lib\conpty_console_list_agent.js:13:26)
+[15980 ms]     at Module._compile (node:internal/modules/cjs/loader:1714:14)
+[15980 ms]     at Module._extensions..js (node:internal/modules/cjs/loader:1848:10)
+[15980 ms]     at Module.load (node:internal/modules/cjs/loader:1448:32)
+[15981 ms]     at Module._load (node:internal/modules/cjs/loader:1270:12)
+[15981 ms]     at c._load (node:electron/js2c/node_init:2:17993)
+[15981 ms]     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+[15981 ms]     at wrapModuleLoad (node:internal/modules/cjs/loader:244:24)
+[15981 ms]     at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:186:5)
+[15981 ms]     at node:internal/main/run_main_module:36:49
+[15981 ms] Node.js v22.21.1
+[16000 ms] Start: Run: docker inspect --type container 3efaefe41706
+[16079 ms] Start: Inspecting container
+[16079 ms] Start: Run: docker inspect --type container 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9
+[16168 ms] Start: Run in container: /bin/sh
+[16191 ms] Start: Run in container: uname -m
+[16293 ms] x86_64
+[16293 ms] 
+[16293 ms] Start: Run in container: (cat /etc/os-release || cat /usr/lib/os-release) 2>/dev/null
+[16296 ms] PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+[16296 ms] 
+[16296 ms] Start: Run in container:  (command -v getent >/dev/null 2>&1 && getent passwd 'appuser' || grep -E '^appuser|^[^:]*:[^:]*:appuser:' /etc/passwd || true)
+[16299 ms] Start: Run in container: test -f '/var/devcontainer/.patchEtcEnvironmentMarker'
+[16300 ms] 
+[16300 ms] 
+[16300 ms] Exit code 1
+[16301 ms] Start: Run in container: /bin/sh
+[16323 ms] Start: Run in container: test ! -f '/var/devcontainer/.patchEtcEnvironmentMarker' && set -o noclobber && mkdir -p '/var/devcontainer' && { > '/var/devcontainer/.patchEtcEnvironmentMarker' ; } 2> /dev/null
+[16430 ms] 
+[16430 ms] 
+[16431 ms] Start: Run in container: cat >> /etc/environment <<'etcEnvironmentEOF'
+[16433 ms] 
+[16433 ms] 
+[16433 ms] Start: Run in container: test -f '/var/devcontainer/.patchEtcProfileMarker'
+[16434 ms] 
+[16434 ms] 
+[16434 ms] Exit code 1
+[16434 ms] Start: Run in container: test ! -f '/var/devcontainer/.patchEtcProfileMarker' && set -o noclobber && mkdir -p '/var/devcontainer' && { > '/var/devcontainer/.patchEtcProfileMarker' ; } 2> /dev/null
+[16437 ms] 
+[16437 ms] 
+[16437 ms] Start: Run in container: sed -i -E 's/((^|\s)PATH=)([^\$]*)$/\1${PATH:-\3}/g' /etc/profile || true
+[16440 ms] 
+[16440 ms] 
+[16453 ms] Start: Run: docker inspect --type container 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9
+[16541 ms] Start: Run: docker exec -i -u root 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9 /bin/sh -c echo "New container started. Keep-alive process started." ; export VSCODE_REMOTE_CONTAINERS_SESSION=5ed471de-4ba9-4fee-860e-b0a5acbb07161771798839184 ; /bin/sh
+[16542 ms] Start: Inspecting container
+[16542 ms] Start: Run: docker inspect --type container 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9
+[16631 ms] Start: Run in container: /bin/sh
+[16661 ms] Start: Run in container: uname -m
+[16673 ms] New container started. Keep-alive process started.
+[16764 ms] x86_64
+[16764 ms] 
+[16764 ms] Start: Run in container: (cat /etc/os-release || cat /usr/lib/os-release) 2>/dev/null
+[16766 ms] PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+[16766 ms] 
+[16767 ms] Start: Run in container:  (command -v getent >/dev/null 2>&1 && getent passwd 'appuser' || grep -E '^appuser|^[^:]*:[^:]*:appuser:' /etc/passwd || true)
+[16769 ms] safe.directory: Looking up root folder for workspace folder '/app'.
+[16769 ms] Start: Run in container: command -v git >/dev/null 2>&1 && ROOT_FOLDER="$(git -C '/app' rev-parse --show-toplevel)" && test "$(stat -c %u "$ROOT_FOLDER")" != "$(id -u)" && echo -n "$ROOT_FOLDER"
+[16780 ms] 
+[16780 ms] fatal: detected dubious ownership in repository at '/app'
+To add an exception for this directory, call:
+
+        git config --global --add safe.directory /app
+[16780 ms] Exit code 128
+[16780 ms] safe.directory: Checking host ownership of root folder '/app' at mount point '/app'.
+[16780 ms] Start: Run: powershell -NoProfile -NonInteractive -Command (Get-Acl .).Owner
+[16791 ms] spawn C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe ENOENT
+[16791 ms] safe.directory: Failed to get host owner for '\run\desktop\mnt\host\c\Users\eduqw\Workspaces\docker\python-docker-dev-example': spawn C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe ENOENT
+[16791 ms] Start: Updating configuration state
+[16801 ms] Start: Run: docker compose version --short
+[16932 ms] Docker Compose version: 5.0.1
+[16932 ms] Start: Setup shutdown monitor
+[16932 ms] Forking shutdown monitor: c:\Users\eduqw\.vscode\extensions\ms-vscode-remote.remote-containers-0.442.0\dist\shutdown\shutdownMonitorProcess \\.\pipe\vscode-remote-containers-322d1201-78f0-4e44-a1d3-a6be72d091a7-sock dockerCompose Debug c:\Users\eduqw\AppData\Roaming\Code\logs\20260223T061954\window1\exthost\ms-vscode-remote.remote-containers 1771798840139
+[16944 ms] Start: Run in container: test -d '/home/appuser/.vscode-server'
+[16946 ms] 
+[16946 ms] 
+[16946 ms] Exit code 1
+[16947 ms] Start: Run in container: test -d '/home/appuser/.vscode-remote'
+[16948 ms] 
+[16948 ms] 
+[16948 ms] Exit code 1
+[16949 ms] Start: Run in container: test ! -f '/home/appuser/.vscode-server/data/Machine/.writeMachineSettingsMarker' && set -o noclobber && mkdir -p '/home/appuser/.vscode-server/data/Machine' && { > '/home/appuser/.vscode-server/data/Machine/.writeMachineSettingsMarker' ; } 2> /dev/null
+[16951 ms] 
+[16951 ms] 
+[16951 ms] Start: Run in container: test -f '/home/appuser/.vscode-server/data/Machine/settings.json'
+[16953 ms] 
+[16953 ms] 
+[16953 ms] Exit code 1
+[16953 ms] Start: Run in container: which apt dpkg snap dnf yum rpm apk docker git gh kubectl podman curl wget ssh scp rsync gpg ps lsof netstat top tree find grep zip unzip tar gzip bzip2 xz || true
+[16958 ms] Start: Run in container: mkdir -p '/home/appuser/.vscode-server/data/Machine' && cat >'/home/appuser/.vscode-server/data/Machine/settings.json' <<'settingsJSON'
+[16961 ms] 
+[16961 ms] 
+[16962 ms] Start: Run in container: test ! -f '/home/appuser/.vscode-server/data/Machine/.writeMachineMCPConfigMarker' && set -o noclobber && mkdir -p '/home/appuser/.vscode-server/data/Machine' && { > '/home/appuser/.vscode-server/data/Machine/.writeMachineMCPConfigMarker' ; } 2> /dev/null
+[16964 ms] 
+[16964 ms] 
+[16964 ms] Start: Run in container: test -f '/home/appuser/.vscode-server/data/User/mcp.json'
+[16965 ms] 
+[16965 ms] 
+[16965 ms] Exit code 1
+[16966 ms] Start: Run in container: test -d '/home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622'
+[16967 ms] 
+[16967 ms] 
+[16967 ms] Exit code 1
+[16967 ms] Start: Run in container: test -d '/vscode/vscode-server/bin/linux-x64/072586267e68ece9a47aa43f8c108e0dcbf44622'
+[16977 ms] 
+[16977 ms] 
+[16978 ms] Exit code 1
+[16978 ms] Installing VS Code Server for commit 072586267e68ece9a47aa43f8c108e0dcbf44622
+[16978 ms] Start: Run in container: /bin/sh
+[17005 ms] Start: Installing VS Code Server
+[17005 ms] Start: Run in container: mkdir -p /vscode/vscode-server/bin/linux-x64/072586267e68ece9a47aa43f8c108e0dcbf44622_1771798857144
+[17119 ms] 
+[17119 ms] 
+[17166 ms] Start: Run in container: (dd iflag=fullblock bs=8192 count=9390; dd iflag=fullblock bs=5760 count=1) | tar --no-same-owner -xz -C /vscode/vscode-server/bin/linux-x64/072586267e68ece9a47aa43f8c108e0dcbf44622_1771798857144
+[23153 ms] 9390+0 records in
+9390+0 records out
+76922880 bytes (77 MB, 73 MiB) copied, 5.96915 s, 12.9 MB/s
+[23153 ms] 1+0 records in
+1+0 records out
+5760 bytes (5.8 kB, 5.6 KiB) copied, 0.012417 s, 464 kB/s
+[23159 ms] 
+[23159 ms] 
+[23160 ms] Start: Run in container: mv -n /vscode/vscode-server/bin/linux-x64/072586267e68ece9a47aa43f8c108e0dcbf44622_1771798857144/* /vscode/vscode-server/bin/linux-x64/072586267e68ece9a47aa43f8c108e0dcbf44622 && rmdir /vscode/vscode-server/bin/linux-x64/072586267e68ece9a47aa43f8c108e0dcbf44622_1771798857144
+[23165 ms] 
+[23166 ms] 
+[23166 ms] Start: Run in container: mkdir -p '/home/appuser/.vscode-server/bin' && ln -snf '/vscode/vscode-server/bin/linux-x64/072586267e68ece9a47aa43f8c108e0dcbf44622' '/home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622'
+[23171 ms] 
+[23171 ms] 
+[23172 ms] Start: Run in container: touch '/vscode/vscode-server/bin/linux-x64/072586267e68ece9a47aa43f8c108e0dcbf44622' && cd '/vscode/vscode-server/bin/linux-x64' && ls -td *[^_]????????????? | tail -n +10 | xargs rm -rf
+[23172 ms] Start: Run in container: test -x '/home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/bin/helpers/check-requirements.sh'
+[23173 ms] 
+[23173 ms] 
+[23173 ms] Start: Run in container: '/home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/bin/helpers/check-requirements.sh'
+[23179 ms] 
+[23179 ms] ls: cannot access '*[^_]?????????????': No such file or directory
+[23238 ms] 
+[23238 ms] 
+[23239 ms] Start: Launching Dev Containers helper.
+[23239 ms] ssh-agent: SSH_AUTH_SOCK not set on local host.
+[23239 ms] ssh-agent: SSH_AUTH_SOCK not set on wsl host.
+[23239 ms] X11 forwarding: DISPLAY not set on local host.
+[23239 ms] Start: Run in container: test -e /tmp/.X11-unix/X0
+[23241 ms] 
+[23241 ms] 
+[23241 ms] Exit code 1
+[23242 ms] Start: Run in container: mkdir -p '/tmp/.X11-unix'
+[23245 ms] 
+[23246 ms] 
+[23246 ms] X11 forwarding: DISPLAY in container (:0) forwarded to wsl host (:0).
+[23246 ms] Start: Run in container: gpgconf --list-dirs
+[23252 ms] sysconfdir:/etc/gnupg
+bindir:/usr/bin
+libexecdir:/usr/lib/gnupg
+libdir:/usr/lib/x86_64-linux-gnu/gnupg
+datadir:/usr/share/gnupg
+localedir:/usr/share/locale
+socketdir:/home/appuser/.gnupg
+dirmngr-socket:/home/appuser/.gnupg/S.dirmngr
+agent-ssh-socket:/home/appuser/.gnupg/S.gpg-agent.ssh
+agent-extra-socket:/home/appuser/.gnupg/S.gpg-agent.extra
+agent-browser-socket:/home/appuser/.gnupg/S.gpg-agent.browser
+agent-socket:/home/appuser/.gnupg/S.gpg-agent
+homedir:/home/appuser/.gnupg
+[23252 ms] 
+[23252 ms] Start: Run in container: ls '/home/appuser/.gnupg/private-keys-v1.d' 2>/dev/null
+[23256 ms] 
+[23256 ms] 
+[23256 ms] Exit code 2
+[23256 ms] Start: Run: gpgconf --list-dirs
+[23310 ms] sysconfdir:C%3a\ProgramData\GNU\etc\gnupg
+bindir:C%3a\Program Files (x86)\GnuPG\bin
+libexecdir:C%3a\Program Files (x86)\GnuPG\bin
+libdir:C%3a\Program Files (x86)\GnuPG\lib\gnupg
+datadir:C%3a\Program Files (x86)\GnuPG\share\gnupg
+localedir:C%3a\Program Files (x86)\GnuPG\share\locale
+socketdir:C%3a\Users\eduqw\AppData\Local\gnupg
+dirmngr-socket:C%3a\Users\eduqw\AppData\Local\gnupg\S.dirmngr
+keyboxd-socket:C%3a\Users\eduqw\AppData\Local\gnupg\S.keyboxd
+agent-ssh-socket:C%3a\Users\eduqw\AppData\Local\gnupg\S.gpg-agent.ssh
+agent-extra-socket:C%3a\Users\eduqw\AppData\Local\gnupg\S.gpg-agent.extra
+agent-browser-socket:C%3a\Users\eduqw\AppData\Local\gnupg\S.gpg-agent.browser
+agent-socket:C%3a\Users\eduqw\AppData\Local\gnupg\S.gpg-agent
+homedir:C%3a\Users\eduqw\AppData\Roaming\gnupg
+[23310 ms] 
+[23311 ms] Start: Run in container: test -f '/home/appuser/.gnupg/pubring.kbx'
+[23313 ms] 
+[23314 ms] 
+[23314 ms] Exit code 1
+[23314 ms] Start: Run in container: test -f '/home/appuser/.gnupg/pubring.gpg'
+[23315 ms] 
+[23316 ms] 
+[23316 ms] Exit code 1
+[23316 ms] Start: Run in container: test -f '/home/appuser/.gnupg/trustdb.gpg'
+[23317 ms] 
+[23318 ms] 
+[23318 ms] Exit code 1
+[23318 ms] Start: Run in container: mkdir -p -m 700 '/home/appuser/.gnupg'
+[23318 ms] gpg-agent: Socket in container (/home/appuser/.gnupg/S.gpg-agent) forwarded to local host (C:\Users\eduqw\AppData\Local\gnupg\S.gpg-agent.extra).
+[23321 ms] 
+[23321 ms] 
+[23321 ms] Start: Run in container: (command -v 'docker' || command -v 'oras' || command -v 'skopeo') >/dev/null 2>&1
+[23323 ms] 
+[23323 ms] 
+[23323 ms] Exit code 127
+[23324 ms] Start: Run in container: # Test for /home/appuser/.gnupg/pubring.kbx and gpg
+[23324 ms] Start: Run in container: /bin/sh
+[23324 ms] userEnvProbe: loginInteractiveShell (default)
+[23325 ms] Start: Run in container: command -v git >/dev/null 2>&1 && git config --system --replace-all credential.helper '!f() { /home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node /tmp/vscode-remote-containers-312b65a0-bad3-4850-90fb-c97d5c11e7d0.js git-credential-helper $*; }; f' || true
+[23328 ms] 
+[23328 ms] 
+[23328 ms] Start: Run in container: test -f '/tmp/devcontainers-5ed471de-4ba9-4fee-860e-b0a5acbb07161771798839184/env-loginInteractiveShell.json'
+[23330 ms] 
+[23330 ms] 
+[23330 ms] Exit code 1
+[23330 ms] Start: Run in container: # Copy C:\Users\eduqw\AppData\Roaming\gnupg\pubring.kbx to /home/appuser/.gnupg/pubring.kbx
+[23330 ms] userEnvProbe: not found in cache
+[23330 ms] userEnvProbe shell: /bin/bash
+[23334 ms] 
+[23334 ms] 
+[23335 ms] Start: Run in container: # Test for /home/appuser/.gnupg/trustdb.gpg and gpg
+[23338 ms] 
+[23338 ms] 
+[23338 ms] Start: Run in container: # Copy C:\Users\eduqw\AppData\Roaming\gnupg\trustdb.gpg to /home/appuser/.gnupg/trustdb.gpg
+[23341 ms] 
+[23341 ms] 
+[23341 ms] Start: Run: gpg-connect-agent updatestartuptty /bye
+[23352 ms] 
+[23352 ms] 
+[23353 ms] Start: Run in container: for pid in `cd /proc && ls -d [0-9]*`; do { echo $pid ; readlink /proc/$pid/cwd || echo ; readlink /proc/$pid/ns/mnt || echo ; cat /proc/$pid/stat | tr "
+[23370 ms] Start: Run in container: echo ~
+[23406 ms] Start: Run in container: cat '/home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/product.json'
+[23410 ms] Start: Run in container: cat '/home/appuser/.vscode-server/data/Machine/.connection-token-072586267e68ece9a47aa43f8c108e0dcbf44622' 2>/dev/null || (umask 377 && echo '29a9d2c3-1c8e-4040-8ee8-fd3716e59a25' >'/home/appuser/.vscode-server/data/Machine/.connection-token-072586267e68ece9a47aa43f8c108e0dcbf44622-59f0a789-9364-4969-9b26-b5b45d71a52f' && mv -n '/home/appuser/.vscode-server/data/Machine/.connection-token-072586267e68ece9a47aa43f8c108e0dcbf44622-59f0a789-9364-4969-9b26-b5b45d71a52f' '/home/appuser/.vscode-server/data/Machine/.connection-token-072586267e68ece9a47aa43f8c108e0dcbf44622' && rm -f '/home/appuser/.vscode-server/data/Machine/.connection-token-072586267e68ece9a47aa43f8c108e0dcbf44622-59f0a789-9364-4969-9b26-b5b45d71a52f' && cat '/home/appuser/.vscode-server/data/Machine/.connection-token-072586267e68ece9a47aa43f8c108e0dcbf44622')
+[23415 ms] 29a9d2c3-1c8e-4040-8ee8-fd3716e59a25
+[23415 ms] 
+[23416 ms] Start: Starting VS Code Server
+[23416 ms] Start: Preparing Extensions
+[23416 ms] Start: Run in container: test ! -f '/home/appuser/.vscode-server/data/Machine/.installExtensionsMarker' && set -o noclobber && mkdir -p '/home/appuser/.vscode-server/data/Machine' && { > '/home/appuser/.vscode-server/data/Machine/.installExtensionsMarker' ; } 2> /dev/null
+[23419 ms] 
+[23419 ms] 
+[23420 ms] Extensions cache, install extensions: dbaeumer.vscode-eslint, ms-python.autopep8, ms-python.python, ms-python.vscode-pylance, ms-azuretools.vscode-docker, ms-azuretools.vscode-containers, mongodb.mongodb-vscode, streetsidesoftware.code-spell-checker
+[23420 ms] Start: Run in container: test -d /home/appuser/.vscode-server/extensionsCache && ls /home/appuser/.vscode-server/extensionsCache || true
+[23422 ms] 
+[23423 ms] 
+[23423 ms] Start: Run in container: test -d /vscode/vscode-server/extensionsCache && ls /vscode/vscode-server/extensionsCache || true
+[23424 ms] 
+[23424 ms] 
+[23424 ms] Extensions cache, link in container: None
+[23424 ms] Optimizing extensions for quality: stable
+[23424 ms] Start: Run in container: /home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/bin/code-server --log debug --force-disable-user-env --server-data-dir /home/appuser/.vscode-server --use-host-proxy --telemetry-level all --accept-server-license-terms --host 127.0.0.1 --port 0 --connection-token-file /home/appuser/.vscode-server/data/Machine/.connection-token-072586267e68ece9a47aa43f8c108e0dcbf44622 --extensions-download-dir /home/appuser/.vscode-server/extensionsCache --install-extension dbaeumer.vscode-eslint --install-extension ms-python.autopep8 --install-extension ms-python.python --install-extension ms-python.vscode-pylance --install-extension ms-azuretools.vscode-docker --install-extension ms-azuretools.vscode-containers --install-extension mongodb.mongodb-vscode --install-extension streetsidesoftware.code-spell-checker --start-server --disable-websocket-compression --skip-requirements-check
+[23474 ms] /home/appuser
+[23474 ms] 
+[23474 ms] Start: Run in container: cat <<'EOF-/tmp/vscode-remote-containers-312b65a0-bad3-4850-90fb-c97d5c11e7d0.js' >/tmp/vscode-remote-containers-312b65a0-bad3-4850-90fb-c97d5c11e7d0.js
+[23477 ms] 
+[23477 ms] 
+[23477 ms] Start: Run in container: cat <<'EOF-/tmp/vscode-remote-containers-server-312b65a0-bad3-4850-90fb-c97d5c11e7d0.js' >/tmp/vscode-remote-containers-server-312b65a0-bad3-4850-90fb-c97d5c11e7d0.js_1771798863616
+[23485 ms] 
+[23485 ms] 
+[23689 ms] *
+* Visual Studio Code Server
+*
+* By using the software, you agree to
+* the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
+* the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
+*
+[23697 ms] Server bound to 127.0.0.1:44609 (IPv4)
+Extension host agent listening on 44609
+
+[23697 ms] Start: Run in container: echo 44609 >'/home/appuser/.vscode-server/data/Machine/.devport-072586267e68ece9a47aa43f8c108e0dcbf44622'
+[23700 ms] 
+[23700 ms] 
+[23700 ms] Port forwarding for container port 44609 starts listening on local port.
+[23701 ms] Port forwarding local port 44609 to container port 44609
+[23702 ms] Running Dev Containers CLI:   run-user-commands --user-data-folder c:\Users\eduqw\AppData\Roaming\Code\User\globalStorage\ms-vscode-remote.remote-containers\data --container-session-data-folder /tmp/devcontainers-5ed471de-4ba9-4fee-860e-b0a5acbb07161771798839184 --workspace-folder c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.local_folder=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.config_file=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --container-id 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9 --log-level debug --log-format json --config c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --default-user-env-probe loginInteractiveShell --skip-non-blocking-commands false --prebuild false --stop-for-personalization true --remote-env REMOTE_CONTAINERS_IPC=/tmp/vscode-remote-containers-ipc-312b65a0-bad3-4850-90fb-c97d5c11e7d0.sock --remote-env DISPLAY=:0 --remote-env REMOTE_CONTAINERS_DISPLAY_SOCK=/tmp/.X11-unix/X0 --remote-env REMOTE_CONTAINERS=true --mount-workspace-git-root --terminal-columns 248 --terminal-rows 14 --dotfiles-target-path ~/dotfiles
+[23702 ms] Start: Run: C:\Users\eduqw\AppData\Local\Programs\Microsoft VS Code\Code.exe c:\Users\eduqw\.vscode\extensions\ms-vscode-remote.remote-containers-0.442.0\dist\spec-node\devContainersSpecCLI.js run-user-commands --user-data-folder c:\Users\eduqw\AppData\Roaming\Code\User\globalStorage\ms-vscode-remote.remote-containers\data --container-session-data-folder /tmp/devcontainers-5ed471de-4ba9-4fee-860e-b0a5acbb07161771798839184 --workspace-folder c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.local_folder=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.config_file=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --container-id 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9 --log-level debug --log-format json --config c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --default-user-env-probe loginInteractiveShell --skip-non-blocking-commands false --prebuild false --stop-for-personalization true --remote-env REMOTE_CONTAINERS_IPC=/tmp/vscode-remote-containers-ipc-312b65a0-bad3-4850-90fb-c97d5c11e7d0.sock --remote-env DISPLAY=:0 --remote-env REMOTE_CONTAINERS_DISPLAY_SOCK=/tmp/.X11-unix/X0 --remote-env REMOTE_CONTAINERS=true --mount-workspace-git-root --terminal-columns 248 --terminal-rows 14 --dotfiles-target-path ~/dotfiles
+[23713 ms] userEnvProbe PATHs:
+Probe:     '/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/jupyter:/usr/local/share/nvm/current/bin:/usr/local/bin:/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/jupyter:/usr/local/share/nvm/current/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/appuser/.local/bin'
+Container: '/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/jupyter:/usr/local/share/nvm/current/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+[23713 ms] Start: Run in container: mkdir -p '/tmp/devcontainers-5ed471de-4ba9-4fee-860e-b0a5acbb07161771798839184' && cat > '/tmp/devcontainers-5ed471de-4ba9-4fee-860e-b0a5acbb07161771798839184/env-loginInteractiveShell.json' << 'envJSON'
+[23717 ms] 
+[23717 ms] 
+[23717 ms] Start: Run in container: umask 077 && XRD="/tmp/user/$(id -u)" && mkdir -p $XRD && echo $XRD
+[23722 ms] /tmp/user/10001
+[23723 ms] 
+[23723 ms] Start: Run in container: test -e /tmp/user/10001/vscode-wayland-560813c7-57a7-42d7-a391-20f98c9b740d.sock || ln -sf /tmp/vscode-wayland-560813c7-57a7-42d7-a391-20f98c9b740d.sock /tmp/user/10001/vscode-wayland-560813c7-57a7-42d7-a391-20f98c9b740d.sock
+[23725 ms] 
+[23725 ms] 
+[23731 ms] Initializing configuration support...
+[23731 ms] Internal initialization of dev container support package...
+[23736 ms] Port forwarding connection from 22954 > 44609 > 44609 in the container.
+[23736 ms] Start: Run in container: /home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node -e 
+[23748 ms] Ignoring option 'skip-requirements-check': not supported for server.
+[23752 ms] [22:21:03] 
+
+
+
+
+[23818 ms] [reconnection-grace-time] No CLI argument provided, using default: 10800000ms (10800s)
+[23821 ms] [22:21:03] Installing extensions...
+[23825 ms] [22:21:03] Extension host agent started.
+[23870 ms] @devcontainers/cli 0.82.0. Node.js v22.21.1. win32 10.0.26200 x64.
+[23870 ms] Start: Run: docker buildx version
+[23943 ms] [22:21:04] Started initializing default profile extensions in extensions installation folder. file:///home/appuser/.vscode-server/extensions
+[24000 ms] Port forwarding 22954 > 44609 > 44609 stderr: Connection established
+[24022 ms] github.com/docker/buildx v0.30.1-desktop.1 792b8327a475a5d8c9d5f4ea6ce866e7da39ae8b
+[24022 ms] 
+[24022 ms] Start: Run: docker version --format {{.Server.Version}}
+[24030 ms] [22:21:04] ComputeTargetPlatform: linux-x64
+[24042 ms] Port forwarding connection from 32421 > 44609 > 44609 in the container.
+[24042 ms] Start: Run in container: /home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node -e 
+[24059 ms] [22:21:04] [127.0.0.1][b5fdf9c2][ManagementConnection] New connection established.
+[24062 ms] [22:21:04] Completed initializing default profile extensions in extensions installation folder. file:///home/appuser/.vscode-server/extensions
+[24081 ms] [22:21:04] Log level changed to info
+[24124 ms] 29.1.3
+[24124 ms] 
+[24124 ms] Start: Run: docker -v
+[24199 ms] Start: Run: docker inspect --type container 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9
+[24286 ms] Start: Inspecting container
+[24286 ms] Start: Run: docker inspect --type container 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9
+[24308 ms] Port forwarding 32421 > 44609 > 44609 stderr: Connection established
+[24370 ms] Start: Run in container: /bin/sh
+[24395 ms] Start: Run in container: uname -m
+[24486 ms] [22:21:04] [127.0.0.1][08a1adc1][ExtensionHostConnection] New connection established.
+[24504 ms] [22:21:04] [127.0.0.1][08a1adc1][ExtensionHostConnection] <421> Launched Extension Host Process.
+[24569 ms] x86_64
+[24569 ms] 
+[24569 ms] Start: Run in container: (cat /etc/os-release || cat /usr/lib/os-release) 2>/dev/null
+[24573 ms] PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+[24573 ms] 
+[24573 ms] Start: Run in container:  (command -v getent >/dev/null 2>&1 && getent passwd 'appuser' || grep -E '^appuser|^[^:]*:[^:]*:appuser:' /etc/passwd || true)
+[24578 ms] userEnvProbe: loginInteractiveShell (default)
+[24579 ms] Start: Run in container: test -f '/tmp/devcontainers-5ed471de-4ba9-4fee-860e-b0a5acbb07161771798839184/env-loginInteractiveShell.json'
+[24581 ms] 
+[24581 ms] 
+[24581 ms] Start: Run in container: mkdir -p '/home/appuser/.devcontainer' && CONTENT="$(cat '/home/appuser/.devcontainer/.onCreateCommandMarker' 2>/dev/null || echo ENOENT)" && [ "${CONTENT:-2026-02-22T22:20:47.993983905Z}" != '2026-02-22T22:20:47.993983905Z' ] && echo '2026-02-22T22:20:47.993983905Z' > '/home/appuser/.devcontainer/.onCreateCommandMarker'
+[24604 ms] 
+[24605 ms] 
+[24605 ms] Start: Run in container: cat '/tmp/devcontainers-5ed471de-4ba9-4fee-860e-b0a5acbb07161771798839184/env-loginInteractiveShell.json'
+[24611 ms] {
+        "NVM_RC_VERSION": "",
+        "PYTHON_SHA256": "fb85a13414b028c49ba18bbd523c2d055a30b56b18b92ce454ea2c51edc656c4",
+        "PYTHONUNBUFFERED": "1",
+        "VSCODE_USER": "appuser",
+        "HOSTNAME": "3efaefe41706",
+        "PYTHON_VERSION": "3.12.12",
+        "POSTGRES_PASSWORD_FILE": "/run/secrets/db-password",
+        "REMOTE_CONTAINERS_IPC": "/tmp/vscode-remote-containers-ipc-312b65a0-bad3-4850-90fb-c97d5c11e7d0.sock",
+        "PIPX_BIN_DIR": "/usr/local/py-utils/bin",
+        "HOME": "/home/appuser",
+        "LANG": "C.UTF-8",
+        "LS_COLORS": "",
+        "NVM_SYMLINK_CURRENT": "true",
+        "GPG_KEY": "7169605F62C751356D054A26A821E680E5FA6305",
+        "PYTHON_PATH": "/usr/local/python/current",
+        "NVM_DIR": "/usr/local/share/nvm",
+        "PYTHONPATH": "/app",
+        "REMOTE_CONTAINERS_SOCKETS": "[\"/tmp/.X11-unix/X0\",\"/home/appuser/.gnupg/S.gpg-agent\"]",
+        "USER": "appuser",
+        "POSTGRES_SERVER": "dev-db",
+        "PIPX_HOME": "/usr/local/py-utils",
+        "SHLVL": "1",
+        "NVM_CD_FLAGS": "",
+        "POSTGRES_USER": "postgres",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PATH": "/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/jupyter:/usr/local/share/nvm/current/bin:/usr/local/bin:/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/jupyter:/usr/local/share/nvm/current/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/appuser/.local/bin",
+        "POSTGRES_DB": "dev_db",
+        "_": "/usr/bin/cat"
+}
+[24611 ms] 
+[24611 ms] Start: Run in container: mkdir -p '/home/appuser/.devcontainer' && CONTENT="$(cat '/home/appuser/.devcontainer/.updateContentCommandMarker' 2>/dev/null || echo ENOENT)" && [ "${CONTENT:-2026-02-22T22:20:47.993983905Z}" != '2026-02-22T22:20:47.993983905Z' ] && echo '2026-02-22T22:20:47.993983905Z' > '/home/appuser/.devcontainer/.updateContentCommandMarker'
+[24620 ms] 
+[24620 ms] 
+[24621 ms] Start: Run in container: mkdir -p '/home/appuser/.devcontainer' && CONTENT="$(cat '/home/appuser/.devcontainer/.postCreateCommandMarker' 2>/dev/null || echo ENOENT)" && [ "${CONTENT:-2026-02-22T22:20:47.993983905Z}" != '2026-02-22T22:20:47.993983905Z' ] && echo '2026-02-22T22:20:47.993983905Z' > '/home/appuser/.devcontainer/.postCreateCommandMarker'
+[24633 ms] 
+[24633 ms] 
+Running the postCreateCommand from devcontainer.json...
+
+[24634 ms] Start: Run in container: /bin/sh -c sudo chown -R appuser:appuser /app && sudo chmod -R 775 /app
+[25023 ms] Running Dev Containers CLI:   read-configuration --workspace-folder c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.local_folder=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.config_file=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --container-id 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9 --log-level debug --log-format json --config c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --mount-workspace-git-root --terminal-columns 231 --terminal-rows 14
+[25023 ms] Start: Run: C:\Users\eduqw\AppData\Local\Programs\Microsoft VS Code\Code.exe c:\Users\eduqw\.vscode\extensions\ms-vscode-remote.remote-containers-0.442.0\dist\spec-node\devContainersSpecCLI.js read-configuration --workspace-folder c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.local_folder=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.config_file=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --container-id 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9 --log-level debug --log-format json --config c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --mount-workspace-git-root --terminal-columns 231 --terminal-rows 14
+[25051 ms] [22:21:05] [127.0.0.1][08a1adc1][ExtensionHostConnection] <421> [reconnection-grace-time] Extension host: read VSCODE_RECONNECTION_GRACE_TIME=10800000ms (10800s)
+
+[25217 ms] @devcontainers/cli 0.82.0. Node.js v22.21.1. win32 10.0.26200 x64.
+[25217 ms] Start: Run: docker inspect --type container 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9
+[25370 ms] [22:21:05] Installing extension 'dbaeumer.vscode-eslint'...
+[25372 ms] [22:21:05] Installing extension 'ms-python.autopep8'...
+[25389 ms] [22:21:05] Installing extension 'ms-python.python'...
+[25405 ms] [22:21:05] Installing extension 'ms-python.vscode-pylance'...
+[25410 ms] [22:21:05] Installing extension 'ms-azuretools.vscode-docker'...
+[25445 ms] [22:21:05] Installing extension 'ms-azuretools.vscode-containers'...
+[25472 ms] [22:21:05] Installing extension 'streetsidesoftware.code-spell-checker'...
+[25478 ms] [22:21:05] Installing extension 'mongodb.mongodb-vscode'...
+[25481 ms] [22:21:05] Getting Manifest... dbaeumer.vscode-eslint
+[22:21:05] Getting Manifest... ms-python.autopep8
+[22:21:05] Getting Manifest... ms-python.python
+[22:21:05] Getting Manifest... ms-python.vscode-pylance
+[22:21:05] Getting Manifest... ms-azuretools.vscode-docker
+[22:21:05] Getting Manifest... ms-azuretools.vscode-containers
+[22:21:05] Getting Manifest... streetsidesoftware.code-spell-checker
+[22:21:05] Getting Manifest... mongodb.mongodb-vscode
+[25560 ms] [22:21:05] Installing extension: ms-python.autopep8 {
+  isMachineScoped: false,
+  installPreReleaseVersion: false,
+  isApplicationScoped: true,
+  isBuiltin: false,
+  installGivenVersion: false,
+  profileLocation: Qr {
+    scheme: 'file',
+    authority: '',
+    path: '/home/appuser/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/appuser/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/appuser/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.109.5', date: '2026-02-19T19:43:32.382Z' }
+}
+[22:21:05] Installing extension: dbaeumer.vscode-eslint {
+  isMachineScoped: false,
+  installPreReleaseVersion: false,
+  isApplicationScoped: true,
+  isBuiltin: false,
+  installGivenVersion: false,
+  profileLocation: Qr {
+    scheme: 'file',
+    authority: '',
+    path: '/home/appuser/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/appuser/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/appuser/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.109.5', date: '2026-02-19T19:43:32.382Z' }
+}
+[22:21:05] Installing extension: ms-azuretools.vscode-docker {
+  isMachineScoped: false,
+  installPreReleaseVersion: false,
+  isApplicationScoped: true,
+  isBuiltin: false,
+  installGivenVersion: false,
+  profileLocation: Qr {
+    scheme: 'file',
+    authority: '',
+    path: '/home/appuser/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/appuser/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/appuser/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.109.5', date: '2026-02-19T19:43:32.382Z' }
+}
+[22:21:05] Installing extension: mongodb.mongodb-vscode {
+  isMachineScoped: false,
+  installPreReleaseVersion: false,
+  isApplicationScoped: true,
+  isBuiltin: false,
+  installGivenVersion: false,
+  profileLocation: Qr {
+    scheme: 'file',
+    authority: '',
+    path: '/home/appuser/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/appuser/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/appuser/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.109.5', date: '2026-02-19T19:43:32.382Z' }
+}
+[22:21:05] Installing extension: ms-python.python {
+  isMachineScoped: false,
+  installPreReleaseVersion: false,
+  isApplicationScoped: true,
+  isBuiltin: false,
+  installGivenVersion: false,
+  profileLocation: Qr {
+    scheme: 'file',
+    authority: '',
+    path: '/home/appuser/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/appuser/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/appuser/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.109.5', date: '2026-02-19T19:43:32.382Z' }
+}
+[22:21:05] Installing extension: ms-python.vscode-pylance {
+  isMachineScoped: false,
+  installPreReleaseVersion: false,
+  isApplicationScoped: true,
+  isBuiltin: false,
+  installGivenVersion: false,
+  profileLocation: Qr {
+    scheme: 'file',
+    authority: '',
+    path: '/home/appuser/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/appuser/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/appuser/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.109.5', date: '2026-02-19T19:43:32.382Z' }
+}
+[22:21:05] Installing extension: ms-azuretools.vscode-containers {
+  isMachineScoped: false,
+  installPreReleaseVersion: false,
+  isApplicationScoped: true,
+  isBuiltin: false,
+  installGivenVersion: false,
+  profileLocation: Qr {
+    scheme: 'file',
+    authority: '',
+    path: '/home/appuser/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/appuser/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/appuser/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.109.5', date: '2026-02-19T19:43:32.382Z' }
+}
+[22:21:05] Installing extension: streetsidesoftware.code-spell-checker {
+  isMachineScoped: false,
+  installPreReleaseVersion: false,
+  isApplicationScoped: true,
+  isBuiltin: false,
+  installGivenVersion: false,
+  profileLocation: Qr {
+    scheme: 'file',
+    authority: '',
+    path: '/home/appuser/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/appuser/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/appuser/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.109.5', date: '2026-02-19T19:43:32.382Z' }
+}
+[25783 ms] [22:21:05] Getting Manifest... ms-python.python
+[22:21:05] Getting Manifest... ms-azuretools.vscode-containers
+[27245 ms] [22:21:07] Getting Manifest... ms-python.vscode-python-envs
+[22:21:07] Getting Manifest... ms-python.vscode-pylance
+[27436 ms] [22:21:07] Getting Manifest... ms-python.vscode-python-envs
+[27449 ms] [22:21:07] Getting Manifest... ms-python.debugpy
+[27456 ms] [22:21:07] Getting Manifest... ms-python.vscode-pylance
+[27470 ms] [22:21:07] Installing extension: ms-python.vscode-python-envs {
+  isMachineScoped: false,
+  installPreReleaseVersion: false,
+  isApplicationScoped: true,
+  isBuiltin: false,
+  installGivenVersion: false,
+  profileLocation: Qr {
+    scheme: 'file',
+    authority: '',
+    path: '/home/appuser/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/appuser/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/appuser/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.109.5', date: '2026-02-19T19:43:32.382Z' },
+  pinned: false,
+  context: { dependecyOrPackExtensionInstall: true }
+}
+[27475 ms] [22:21:07] Installing extension: ms-python.debugpy {
+  isMachineScoped: false,
+  installPreReleaseVersion: false,
+  isApplicationScoped: true,
+  isBuiltin: false,
+  installGivenVersion: false,
+  profileLocation: Qr {
+    scheme: 'file',
+    authority: '',
+    path: '/home/appuser/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/appuser/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/appuser/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.109.5', date: '2026-02-19T19:43:32.382Z' },
+  pinned: false,
+  context: { dependecyOrPackExtensionInstall: true }
+}
+[27483 ms] [22:21:07] Getting Manifest... ms-python.debugpy
+[28766 ms] Running Dev Containers CLI:   read-configuration --workspace-folder c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.local_folder=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.config_file=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --container-id 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9 --log-level debug --log-format json --config c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --mount-workspace-git-root --terminal-columns 231 --terminal-rows 14
+[28767 ms] Start: Run: C:\Users\eduqw\AppData\Local\Programs\Microsoft VS Code\Code.exe c:\Users\eduqw\.vscode\extensions\ms-vscode-remote.remote-containers-0.442.0\dist\spec-node\devContainersSpecCLI.js read-configuration --workspace-folder c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.local_folder=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example --id-label devcontainer.config_file=c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --container-id 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9 --log-level debug --log-format json --config c:\Users\eduqw\Workspaces\docker\python-docker-dev-example\.devcontainer\devcontainer.json --mount-workspace-git-root --terminal-columns 231 --terminal-rows 14
+[28966 ms] @devcontainers/cli 0.82.0. Node.js v22.21.1. win32 10.0.26200 x64.
+[28966 ms] Start: Run: docker inspect --type container 3efaefe41706a12b632aa90c8765c823ad9ccec2a128d311627e80a5716d3cb9
+[32570 ms] Start: Run in container: cat /proc/596/environ
+[33154 ms] Start: Run in container: cat /proc/636/environ
+[33452 ms] Start: Run in container: mkdir -p '/vscode/vscode-server/extensionsCache' && cd '/home/appuser/.vscode-server/extensionsCache' && cp '42f96fa8-ce63-449c-9174-2d3bc1d52c30' 'dbaeumer.vscode-eslint-3.0.20' 'dbaeumer.vscode-eslint-3.0.20.sigzip' 'mongodb.mongodb-vscode-1.14.6' 'mongodb.mongodb-vscode-1.14.6.sigzip' 'ms-azuretools.vscode-containers-2.4.1' 'ms-azuretools.vscode-containers-2.4.1.sigzip' 'ms-azuretools.vscode-docker-2.0.0' 'ms-azuretools.vscode-docker-2.0.0.sigzip' 'ms-python.autopep8-2025.2.0' 'ms-python.autopep8-2025.2.0.sigzip' 'ms-python.debugpy-2025.18.0-linux-x64' 'ms-python.debugpy-2025.18.0-linux-x64.sigzip' 'ms-python.python-2026.2.0-linux-x64' 'ms-python.python-2026.2.0-linux-x64.sigzip' 'ms-python.vscode-python-envs-1.16.0-linux-x64' 'ms-python.vscode-python-envs-1.16.0-linux-x64.sigzip' 'streetsidesoftware.code-spell-checker-4.5.6' 'streetsidesoftware.code-spell-checker-4.5.6.sigzip' '/vscode/vscode-server/extensionsCache'
+[33945 ms] [22:21:14] Extension signature verification result for ms-azuretools.vscode-docker: Success. Internal Code: 0. Executed: true. Duration: 5924ms.
+[34068 ms] 
+[34068 ms] 
+[34068 ms] Start: Run in container: cd '/vscode/vscode-server/extensionsCache' && ls -t | tail -n +500 | xargs rm -f
+[34130 ms] 
+[34130 ms] 
+[34800 ms] Start: Run in container: # Test for /home/appuser/.gitconfig and git
+[34829 ms] [user]
+/home/appuser/.gitconfig exists
+[34830 ms] 
+[34830 ms] Exit code 1
+[34830 ms] Start: Run in container: command -v git >/dev/null 2>&1 && git config --global --replace-all credential.helper '!f() { /home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node /tmp/vscode-remote-containers-312b65a0-bad3-4850-90fb-c97d5c11e7d0.js git-credential-helper $*; }; f' || true
+[34925 ms] [22:21:15] Extracted extension to file:///home/appuser/.vscode-server/extensions/ms-azuretools.vscode-docker-2.0.0: ms-azuretools.vscode-docker
+[34933 ms] 
+[34933 ms] error: could not write config file /home/appuser/.gitconfig: Device or resource busy
+[35057 ms] [22:21:15] Renamed to /home/appuser/.vscode-server/extensions/ms-azuretools.vscode-docker-2.0.0
+[35137 ms] [22:21:15] Extension signature verification result for ms-python.autopep8: Success. Internal Code: 0. Executed: true. Duration: 6629ms.
+[35411 ms] [22:21:15] Extension signature verification result for ms-azuretools.vscode-containers: Success. Internal Code: 0. Executed: true. Duration: 6307ms.
+[36409 ms] [22:21:16] Extension signature verification result for dbaeumer.vscode-eslint: Success. Internal Code: 0. Executed: true. Duration: 7964ms.
+[36590 ms] [22:21:16] Extension signature verification result for ms-python.debugpy: Success. Internal Code: 0. Executed: true. Duration: 5069ms.
+[36627 ms] [22:21:16] Extracted extension to file:///home/appuser/.vscode-server/extensions/dbaeumer.vscode-eslint-3.0.20: dbaeumer.vscode-eslint
+[36696 ms] [22:21:16] Renamed to /home/appuser/.vscode-server/extensions/dbaeumer.vscode-eslint-3.0.20
+[36763 ms] [22:21:16] Extracted extension to file:///home/appuser/.vscode-server/extensions/ms-azuretools.vscode-containers-2.4.1: ms-azuretools.vscode-containers
+[36876 ms] [22:21:17] Renamed to /home/appuser/.vscode-server/extensions/ms-azuretools.vscode-containers-2.4.1
+[37162 ms] [22:21:17] Extension signature verification result for ms-python.python: Success. Internal Code: 0. Executed: true. Duration: 3145ms.
+[37186 ms] [22:21:17] Extension signature verification result for ms-python.vscode-python-envs: Success. Internal Code: 0. Executed: true. Duration: 4731ms.
+[37412 ms] [22:21:17] Extension signature verification result for streetsidesoftware.code-spell-checker: Success. Internal Code: 0. Executed: true. Duration: 5994ms.
+[37433 ms] [22:21:17] Extension signature verification result for mongodb.mongodb-vscode: Success. Internal Code: 0. Executed: true. Duration: 4020ms.
+[37460 ms] [22:21:17] Downloaded extension to file:///home/appuser/.vscode-server/extensionsCache/42f96fa8-ce63-449c-9174-2d3bc1d52c30
+[37544 ms] [22:21:17] Installing extension: github.copilot-chat {
+  isApplicationScoped: false,
+  profileLocation: Qr {
+    scheme: 'file',
+    authority: '',
+    path: '/home/appuser/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/appuser/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/appuser/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.109.5', date: '2026-02-19T19:43:32.382Z' }
+}
+[37679 ms] [22:21:17] Extracted extension to file:///home/appuser/.vscode-server/extensions/ms-python.autopep8-2025.2.0: ms-python.autopep8
+[37704 ms] [22:21:17] Renamed to /home/appuser/.vscode-server/extensions/ms-python.autopep8-2025.2.0
+[38063 ms] [22:21:18] Extracted extension to file:///home/appuser/.vscode-server/extensions/ms-python.vscode-python-envs-1.16.0-linux-x64: ms-python.vscode-python-envs
+[38097 ms] [22:21:18] Renamed to /home/appuser/.vscode-server/extensions/ms-python.vscode-python-envs-1.16.0-linux-x64
+[38542 ms] [22:21:18] Extracted extension to file:///home/appuser/.vscode-server/extensions/streetsidesoftware.code-spell-checker-4.5.6: streetsidesoftware.code-spell-checker
+[38580 ms] [22:21:18] Renamed to /home/appuser/.vscode-server/extensions/streetsidesoftware.code-spell-checker-4.5.6
+[38689 ms] [22:21:18] Extracted extension to file:///home/appuser/.vscode-server/extensions/mongodb.mongodb-vscode-1.14.6: mongodb.mongodb-vscode
+[38703 ms] [22:21:18] Renamed to /home/appuser/.vscode-server/extensions/mongodb.mongodb-vscode-1.14.6
+[38805 ms] [22:21:18] Extracted extension to file:///home/appuser/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-x64: ms-python.debugpy
+[38837 ms] [22:21:18] Renamed to /home/appuser/.vscode-server/extensions/ms-python.debugpy-2025.18.0-linux-x64
+[39240 ms] [22:21:19] Extracted extension to file:///home/appuser/.vscode-server/extensions/github.copilot-chat-0.37.8: github.copilot-chat
+[39259 ms] [22:21:19] Renamed to /home/appuser/.vscode-server/extensions/github.copilot-chat-0.37.8
+[39289 ms] [22:21:19] Extension installed successfully: github.copilot-chat file:///home/appuser/.vscode-server/extensions/extensions.json
+[39488 ms] Port forwarding connection from 11501 > 44609 > 44609 in the container.
+[39488 ms] Start: Run in container: /home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node -e 
+[39689 ms] Port forwarding 11501 > 44609 > 44609 stderr: Connection established
+[41413 ms] [22:21:21] Extracted extension to file:///home/appuser/.vscode-server/extensions/ms-python.python-2026.2.0-linux-x64: ms-python.python
+[41557 ms] [22:21:21] Renamed to /home/appuser/.vscode-server/extensions/ms-python.python-2026.2.0-linux-x64
+[41733 ms] [22:21:21] Extension signature verification result for ms-python.vscode-pylance: Success. Internal Code: 0. Executed: true. Duration: 1244ms.
+[45778 ms] Port forwarding 11501 > 44609 > 44609 stderr: Remote close
+[45790 ms] Port forwarding 11501 > 44609 > 44609 terminated with code 0 and signal null.
+[46149 ms] [22:21:26] Extracted extension to file:///home/appuser/.vscode-server/extensions/ms-python.vscode-pylance-2026.1.1: ms-python.vscode-pylance
+[46412 ms] [22:21:26] Renamed to /home/appuser/.vscode-server/extensions/ms-python.vscode-pylance-2026.1.1
+[46441 ms] [22:21:26] Extension installed successfully: ms-azuretools.vscode-docker file:///home/appuser/.vscode-server/extensions/extensions.json
+[22:21:26] Extension installed successfully: dbaeumer.vscode-eslint file:///home/appuser/.vscode-server/extensions/extensions.json
+[22:21:26] Extension installed successfully: ms-azuretools.vscode-containers file:///home/appuser/.vscode-server/extensions/extensions.json
+[22:21:26] Extension installed successfully: ms-python.autopep8 file:///home/appuser/.vscode-server/extensions/extensions.json
+[22:21:26] Extension installed successfully: ms-python.vscode-python-envs file:///home/appuser/.vscode-server/extensions/extensions.json
+[22:21:26] Extension installed successfully: streetsidesoftware.code-spell-checker file:///home/appuser/.vscode-server/extensions/extensions.json
+[22:21:26] Extension installed successfully: mongodb.mongodb-vscode file:///home/appuser/.vscode-server/extensions/extensions.json
+[22:21:26] Extension installed successfully: ms-python.debugpy file:///home/appuser/.vscode-server/extensions/extensions.json
+[22:21:26] Extension installed successfully: ms-python.python file:///home/appuser/.vscode-server/extensions/extensions.json
+[22:21:26] Extension installed successfully: ms-python.vscode-pylance file:///home/appuser/.vscode-server/extensions/extensions.json
+[46447 ms] [22:21:26] Extension 'ms-azuretools.vscode-docker' v2.0.0 was successfully installed.
+[22:21:26] Extension 'dbaeumer.vscode-eslint' v3.0.20 was successfully installed.
+[22:21:26] Extension 'ms-azuretools.vscode-containers' v2.4.1 was successfully installed.
+[22:21:26] Extension 'ms-python.autopep8' v2025.2.0 was successfully installed.
+[22:21:26] Extension 'ms-python.vscode-python-envs' v1.16.0 was successfully installed.
+[22:21:26] Extension 'streetsidesoftware.code-spell-checker' v4.5.6 was successfully installed.
+[22:21:26] Extension 'mongodb.mongodb-vscode' v1.14.6 was successfully installed.
+[22:21:26] Extension 'ms-python.debugpy' v2025.18.0 was successfully installed.
+[22:21:26] Extension 'ms-python.python' v2026.2.0 was successfully installed.
+[22:21:26] Extension 'ms-python.vscode-pylance' v2026.1.1 was successfully installed.
+[46522 ms] Port forwarding 11501 > 44609 > 44609: Local close
+[46523 ms] Port forwarding connection from 60633 > 44609 > 44609 in the container.
+[46523 ms] Start: Run in container: /home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node -e 
+[46576 ms] Port forwarding connection from 61670 > 44609 > 44609 in the container.
+[46577 ms] Start: Run in container: /home/appuser/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node -e 
+[46765 ms] Port forwarding 60633 > 44609 > 44609 stderr: Connection established
+[46787 ms] Port forwarding 61670 > 44609 > 44609 stderr: Connection established
+[49400 ms] Start: Run in container: cat /proc/1126/environ
+[52776 ms] Port forwarding 60633 > 44609 > 44609 stderr: Remote close
+[52789 ms] Port forwarding 60633 > 44609 > 44609 terminated with code 0 and signal null.
+[52933 ms] Port forwarding 61670 > 44609 > 44609 stderr: Remote close
+[52948 ms] Port forwarding 61670 > 44609 > 44609 terminated with code 0 and signal null.
+[94141 ms] Start: Run in container: mkdir -p '/vscode/vscode-server/extensionsCache' && cd '/home/appuser/.vscode-server/extensionsCache' && cp 'ms-python.vscode-pylance-2026.1.1' '/vscode/vscode-server/extensionsCache'
+[94166 ms] 
+[94167 ms] 
+[94167 ms] Start: Run in container: cd '/vscode/vscode-server/extensionsCache' && ls -t | tail -n +500 | xargs rm -f
+[94172 ms] 
+[94173 ms] 
+[172790 ms] Port forwarding 60633 > 44609 > 44609: Local close with error
